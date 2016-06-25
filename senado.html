@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>senado</title>
+	<script type="text/javascript">
+		var senado={
+			"Partido Popular":[
+				"María Auxiliadora Pérez Díaz",
+				"Hipólito Alejandro (POli) Suárez Nuez"],
+			"Podemos":[
+				"María del Pino Alemán Guedes",
+				"José Antonio de León Hernández"],
+			"Partido Socialista Obrero Español":[
+				"María José López Santana",
+				"Juan Díaz Sánchez"],
+			"Ciudadanos":[
+				"Francisco de Torres Fernández",
+				"Leticia García Díaz"],
+			"Coalición Canaria":[
+				"Beatriz Calzada Ojeda",
+				"Gustazo Viera Ruiz"],
+			"Partido animalista contra el maltrato animal":[
+				"José Carlos Socorro Perdomo",
+				"María Reyes Martell González"],
+			"Unión progreso y democracía":[
+				"Jesús Antonio Urriza Rodríguez"],
+			"Unidad del Pueblo":[
+				"Antonio Ramón Blanco Ramos",
+				"Rosa María Rodríguez Morales"],
+			"Recortes cero-grupo verde":[
+				"Francisco Ojeda Ramírez",
+				"Anastasia María Ramírez González"],
+			"Partido comunista del pueblo canario":[
+				"Francisca Carmen Sánchez Macías",
+				"Joaquín Ávila García"],
+			"VOX":[
+				"Manuel Vega Marrero",
+				"María del Carmen Santana Martín"],
+			"Solidaridad y autogestión internacionalista":[
+				"Ángel Rodríguez Calderín",
+				"Teresa de Jesús García Miranda"],
+			"Juntos por canarias":[
+				"Bernardo Francisco Medina Alonso",
+				"María Sabrina Barnús Castro",
+				"Bernabé Ubay García Melián"],
+			"Partido humanista":["Mouhamadou Moustapha Diot Wade"],
+			"":["Votos en Blanco", "Votos nulos"]
+		};
+		var resultado = new Map();
+
+		var creaBoton = function(candidato){
+			var votos = document.createElement("p");
+			votos.innerHTML = 0;
+			var boton = document.createElement("button");
+			boton.innerHTML = candidato;
+			boton.addEventListener("click", function(){
+				votos.innerHTML = parseInt(votos.innerHTML, 10) +1;
+			});
+			var botonResta = document.createElement("button");
+			botonResta.innerHTML = "-";
+			botonResta.addEventListener("click", function(){
+				votos.innerHTML = parseInt(votos.innerHTML, 10) -1;
+			});
+			var divCandidato = document.createElement("div");
+			divCandidato.appendChild(votos);
+			divCandidato.appendChild(boton);
+			divCandidato.appendChild(botonResta);
+			return divCandidato;
+		}
+
+		window.addEventListener("load",function(){
+			var body = document.getElementsByTagName("body")[0];
+			var lista = document.createElement("ul");
+			Object.keys(senado).forEach(function(ele, item){
+				var partido = document.createElement("p");
+				partido.innerHTML = ele;
+				var elemento = document.createElement("li");
+				elemento.appendChild(partido);
+				Object.keys(senado[ele]).forEach(function(elem, item){
+					elemento.appendChild(creaBoton(senado[ele][elem]));
+				});
+				lista.appendChild(elemento);
+			});
+			body.appendChild(lista);
+		},false);
+	</script>
+	<style media="screen">
+		body{
+			font-size: 20px;
+			font-weight: 400;
+		}
+		ul{
+			column-count: 2;
+			-moz-column-count: 2;
+		}
+		button{
+			margin: 0.25em;
+			padding: 1em;
+			font-size: 20px;
+			font-weight: 400;
+		}
+		li{
+			list-style: none;
+		}
+		body>ul>li>div>p{
+			display: inline;
+			margin: 0.25em;
+		}
+	</style>
+</head>
+<body>
+</body>
+</html>
