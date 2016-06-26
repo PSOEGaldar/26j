@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>congreso</title>
+	<script type="text/javascript">
+		var congreso = [
+			"Partido popular",
+			"Unidad del pueblo canario",
+			"Coalición canaria-partido nacionalista canario",
+			"Partido socialista obrero español-nueva canarias",
+			"Partido animalista contra el maltrato animal",
+			"Partido comunista del pueblo canario",
+			"Partido humanista",
+			"Vox",
+			"Ciudadanos",
+			"Solidaridad y autogestión internacionalista",
+			"recortes cero-grupo verde",
+			"Unidos podemos",
+			"Juntos por canarias",
+			"Unión progreso y democracía"
+		];
+
+		var creaBoton = function(candidato){
+			var votos = document.createElement("p");
+			votos.innerHTML = 0;
+			var boton = document.createElement("button");
+			boton.innerHTML = candidato;
+			boton.addEventListener("click", function(){
+				votos.innerHTML = parseInt(votos.innerHTML, 10) +1;
+			});
+			var botonResta = document.createElement("button");
+			botonResta.innerHTML = "-";
+			botonResta.addEventListener("click", function(){
+				votos.innerHTML = parseInt(votos.innerHTML, 10) -1;
+			});
+			var divCandidato = document.createElement("li");
+			divCandidato.appendChild(votos);
+			divCandidato.appendChild(boton);
+			divCandidato.appendChild(botonResta);
+			return divCandidato;
+		}
+
+		window.addEventListener("load",function(){
+			var body = document.getElementsByTagName("body")[0];
+			var lista = document.createElement("ul");
+			Object.keys(congreso).forEach(function(ele, item){
+				lista.appendChild(creaBoton(congreso[ele]));
+			});
+			body.appendChild(lista);
+		},false);
+	</script>
+	<style media="screen">
+		* {
+			margin: 0px;
+			padding: 0px;
+		}
+		body{
+			font-size: 20px;
+			font-weight: 400;
+		}
+		ul{
+			column-count: 2;
+			-moz-column-count: 2;
+		}
+		button{
+			margin: 0.25em;
+			padding: 1em;
+			font-size: 20px;
+			font-weight: 400;
+		}
+		li{
+			list-style: none;
+		}
+		body>ul>li>p{
+			display: inline;
+			margin: 0.25em;
+		}
+	</style>
+</head>
+<body>
+</body>
+</html>
